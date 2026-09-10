@@ -5,7 +5,7 @@ go 1.26.0
 toolchain go1.27.1
 
 require (
-	github.com/go-crypt/x v0.4.16
+	github.com/go-crypt/x v0.4.17
 	github.com/go-krb5/x v0.3.3
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/sessions v1.4.0
