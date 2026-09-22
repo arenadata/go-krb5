@@ -487,33 +487,26 @@ func (r *Realm) parseLines(name string, lines []string) (err error) {
 			err = UnsupportedDirective{"v4 configurations are not supported"}
 		}
 
+		// auth_to_local_names maps principals to local names for the application; the block is skipped.
 		if strings.Contains(line, "auth_to_local_names") {
 			ignore = true
-			err = UnsupportedDirective{"auth_to_local_names are not supported"}
 		}
 
-		if strings.Contains(line, "{") {
-			c++
-
-			if ignore {
-				continue
-			}
+		c += strings.Count(line, "{") - strings.Count(line, "}")
+		if c < 0 {
+			return InvalidErrorf("unpaired curly brackets")
 		}
 
-		if strings.Contains(line, "}") {
-			c--
-			if c < 0 {
-				return InvalidErrorf("unpaired curly brackets")
+		if ignore {
+			if c == 0 {
+				ignore = false
 			}
 
-			if ignore {
-				if c < 1 {
-					c = 0
-					ignore = false
-				}
+			continue
+		}
 
-				continue
-			}
+		if !strings.Contains(line, "=") {
+			continue
 		}
 
 		p := strings.SplitN(line, "=", 2)
