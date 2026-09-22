@@ -14,7 +14,7 @@ const (
 	ConfigKeyAllowWeakCrypto         = "allow_weak_crypto"
 	ConfigKeyCanonicalize            = "canonicalize"
 	ConfigKeyCredentialCacheType     = "ccache_type"
-	ConfigKeyClockSkew               = "clock_skew"
+	ConfigKeyClockSkew               = "clockskew"
 	ConfigKeyDefaultClientKeytabName = "default_client_keytab_name"
 	ConfigKeyDefaultKeytabName       = "default_keytab_name"
 	ConfigKeyDefaultRealm            = "default_realm"
